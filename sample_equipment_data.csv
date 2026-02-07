@@ -1,0 +1,6 @@
+Equipment Name,Type,Flowrate,Pressure,Temperature
+Centrifugal Pump,Pump,120.5,2.4,45.0
+Heat Exchanger A,Exchanger,85.0,1.8,110.0
+Storage Tank 1,Tank,0.0,0.5,30.0
+Distillation Column,Column,450.2,5.2,180.5
+Cooling Tower B,Cooler,300.0,1.2,25.0
