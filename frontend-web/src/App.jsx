@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { uploadCSV, getHistory } from './apiService';
 import { Bar, Pie } from 'react-chartjs-2';
-import { AnimatePresence } from 'framer-motion';
+/* eslint-disable no-unused-vars */
+import { motion, AnimatePresence } from 'framer-motion'; 
+/* eslint-enable no-unused-vars */
 import { 
   Upload, Database, BarChart3, Activity, 
   FlaskConical, ShieldCheck, Zap, Github, PieChart as PieIcon, History
@@ -20,7 +22,6 @@ const App = () => {
   const [history, setHistory] = useState([]);
   const [loading, setLoading] = useState(false);
 
-  // Load History on Mount
   useEffect(() => {
     fetchHistory();
   }, []);
@@ -41,7 +42,7 @@ const App = () => {
       const response = await uploadCSV(file);
       setData(response.data.raw_data);
       setSummary(response.data.summary);
-      fetchHistory(); // Refresh the history list
+      fetchHistory(); 
     } catch {
       alert("Analysis failed. Ensure the Django server is running.");
     } finally {
@@ -51,7 +52,6 @@ const App = () => {
 
   return (
     <div className="min-h-screen bg-slate-50 font-sans text-slate-900">
-      {/* HEADER SECTION */}
       <header className="bg-white/80 backdrop-blur-md sticky top-0 z-50 border-b border-slate-200">
         <div className="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
           <div className="flex items-center gap-2">
@@ -78,7 +78,6 @@ const App = () => {
         </div>
       </header>
 
-      {/* HERO SECTION */}
       <section id="hero" className="pt-16 pb-20 px-6 bg-gradient-to-b from-white to-slate-50">
         <div className="max-w-7xl mx-auto text-center">
           <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }}>
@@ -99,11 +98,8 @@ const App = () => {
         </div>
       </section>
 
-      {/* ANALYSIS SECTION */}
       <section id="analyze" className="py-12 px-6">
         <div className="max-w-7xl mx-auto grid lg:grid-cols-3 gap-8">
-          
-          {/* LEFT: UPLOAD & HISTORY */}
           <div className="lg:col-span-1 space-y-8">
             <div className="bg-white p-8 rounded-[32px] shadow-xl shadow-slate-200/50 border border-slate-100">
               <h3 className="text-xl font-bold mb-6 flex items-center gap-2">
@@ -125,7 +121,6 @@ const App = () => {
               </button>
             </div>
 
-            {/* HISTORY WIDGET */}
             <div className="bg-white p-8 rounded-[32px] shadow-xl shadow-slate-200/50 border border-slate-100">
               <h3 className="text-lg font-bold mb-6 flex items-center gap-2">
                 <History size={18} className="text-slate-400" /> Recent Uploads
@@ -146,7 +141,6 @@ const App = () => {
             </div>
           </div>
 
-          {/* RIGHT: RESULTS DISPLAY */}
           <div className="lg:col-span-2 space-y-8">
             <AnimatePresence mode="wait">
               {summary ? (
@@ -158,7 +152,6 @@ const App = () => {
                   </div>
 
                   <div className="grid md:grid-cols-2 gap-8">
-                    {/* Distribution Chart (PIE) */}
                     <div className="bg-white p-8 rounded-[32px] shadow-sm border border-slate-100">
                       <h4 className="font-bold text-sm uppercase tracking-widest text-slate-400 mb-6 flex items-center gap-2">
                         <PieIcon size={16} /> Type Distribution
@@ -178,7 +171,6 @@ const App = () => {
                       </div>
                     </div>
 
-                    {/* Parameter Averages (BAR) */}
                     <div className="bg-white p-8 rounded-[32px] shadow-sm border border-slate-100">
                       <h4 className="font-bold text-sm uppercase tracking-widest text-slate-400 mb-6 flex items-center gap-2">
                         <BarChart3 size={16} /> Metrics Overview
@@ -200,7 +192,6 @@ const App = () => {
                     </div>
                   </div>
 
-                  {/* DATA TABLE */}
                   <div className="mt-8 bg-white rounded-[32px] overflow-hidden border border-slate-100 shadow-sm">
                     <table className="w-full text-left">
                       <thead className="bg-slate-50 border-b border-slate-100">
@@ -221,11 +212,6 @@ const App = () => {
                         ))}
                       </tbody>
                     </table>
-                    {data.length > 10 && (
-                      <div className="p-4 bg-slate-50 text-center text-[10px] text-slate-400 font-bold">
-                        Showing first 10 of {data.length} records
-                      </div>
-                    )}
                   </div>
                 </motion.div>
               ) : (
@@ -240,7 +226,6 @@ const App = () => {
         </div>
       </section>
 
-      {/* FOOTER */}
       <footer className="bg-slate-900 text-white pt-20 pb-10 px-6">
         <div className="max-w-7xl mx-auto grid md:grid-cols-2 gap-12 border-b border-slate-800 pb-12 mb-10">
           <div>
@@ -253,29 +238,29 @@ const App = () => {
             </p>
           </div>
           <div className="flex flex-col md:items-end justify-center">
-             <div className="flex gap-4 mb-4">
-                <StatIcon icon={<Zap />} label="React" />
-                <StatIcon icon={<ShieldCheck />} label="Django" />
-                <StatIcon icon={<Database />} label="SQLite" />
+            <div className="flex gap-4 mb-4">
+              <StatIcon icon={<Zap />} label="React" />
+              <StatIcon icon={<ShieldCheck />} label="Django" />
+              <StatIcon icon={<Database />} label="SQLite" />
             </div>
-  <p className="text-slate-500 text-xs italic">
-    Developed by{" "}
-    <a 
-      href="https://sailyfspot.blogspot.com" 
-      target="_blank" 
-      rel="noopener noreferrer" 
-      className="underline hover:text-slate-700"
-    >
-      LYFSpot
-    </a>
-  </p>
-</div>
-</div>
-<div className="max-w-7xl mx-auto text-center text-slate-600 text-[10px] font-bold uppercase tracking-widest">
-  &copy; 2026 FOSSEE IIT Bombay Screening • Built with 💙 from LYFSpot
-</div>
-</footer>
-</div>
+            <p className="text-slate-500 text-xs italic">
+              Developed by{" "}
+              <a 
+                href="https://sailyfspot.blogspot.com" 
+                target="_blank" 
+                rel="noopener noreferrer" 
+                className="underline hover:text-slate-300 transition-colors"
+              >
+                LYFSpot
+              </a>
+            </p>
+          </div>
+        </div>
+        <div className="max-w-7xl mx-auto text-center text-slate-600 text-[10px] font-bold uppercase tracking-widest">
+          &copy; 2026 FOSSEE IIT Bombay Screening • Built with 💙 from LYFSpot
+        </div>
+      </footer>
+    </div>
   );
 };
 
@@ -290,16 +275,6 @@ const StatBox = ({ label, value, color }) => (
   <div className="bg-white p-6 rounded-3xl shadow-sm border border-slate-100 flex flex-col items-center">
     <span className={`text-[10px] font-black uppercase text-${color}-600 tracking-widest mb-1`}>{label}</span>
     <span className="text-2xl font-black">{value}</span>
-  </div>
-);
-
-const FeatureCard = ({ icon, title, desc }) => (
-  <div className="p-8 rounded-3xl border border-slate-100 bg-white hover:shadow-xl transition-all group">
-    <div className="mb-4 p-3 bg-slate-50 rounded-xl w-fit group-hover:bg-blue-600 group-hover:text-white transition-colors">
-      {React.cloneElement(icon, { size: 24 })}
-    </div>
-    <h4 className="text-xl font-bold mb-2">{title}</h4>
-    <p className="text-slate-500 text-sm leading-relaxed">{desc}</p>
   </div>
 );
 
