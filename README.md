@@ -170,8 +170,18 @@ LinkedIn: https://www.linkedin.com/in/sravan-sai-vuppula/
 
 ---
 
-## ⚖️ License
-This project is licensed under the MIT License.
+## 🚀 How to Run Locally (for simple understanding)
+
+### Backend
+1. cd backend
+2. pip install -r requirements.txt
+3. python manage.py migrate
+4. python manage.py runserver
+
+### Frontend
+1. cd frontend-web
+2. npm install
+3. npm run dev
 
 ---
 
