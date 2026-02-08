@@ -1,8 +1,15 @@
 import axios from 'axios';
 
-const API_BASE_URL = "http://127.0.0.1:8000/api";
+/**
+ * PRODUCTION URL: Replace this with your actual Render URL after deployment.
+ * Example: "https://fossee-backend-sravan.onrender.com/api"
+ */
+const PROD_URL = "https://fossee-screening-task.onrender.com";
+const LOCAL_URL = "http://127.0.0.1:8000/api";
 
-// Ensure 'export' is present before 'const'
+// Automatically switch base URL based on environment
+const API_BASE_URL = window.location.hostname === "localhost" ? LOCAL_URL : PROD_URL;
+
 export const uploadCSV = (file) => {
     const formData = new FormData();
     formData.append('file', file);
