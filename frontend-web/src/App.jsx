@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { uploadCSV, getHistory } from './apiService';
 import { Bar, Pie } from 'react-chartjs-2';
-import { motion, AnimatePresence } from 'framer-motion';
+import { AnimatePresence } from 'framer-motion';
 import { 
   Upload, Database, BarChart3, Activity, 
   FlaskConical, ShieldCheck, Zap, Github, PieChart as PieIcon, History
@@ -29,7 +29,7 @@ const App = () => {
     try {
       const res = await getHistory();
       setHistory(res.data);
-    } catch (err) {
+    } catch {
       console.error("History fetch failed");
     }
   };
@@ -42,7 +42,7 @@ const App = () => {
       setData(response.data.raw_data);
       setSummary(response.data.summary);
       fetchHistory(); // Refresh the history list
-    } catch (error) {
+    } catch {
       alert("Analysis failed. Ensure the Django server is running.");
     } finally {
       setLoading(false);
@@ -67,7 +67,7 @@ const App = () => {
             <a href="#hero" className="hover:text-blue-600 transition-colors">Overview</a>
             <a href="#analyze" className="hover:text-blue-600 transition-colors">Analyze</a>
             <a 
-              href="https://github.com/vuppula-sravan/FOSSEE_Screening_Task" 
+              href="https://github.com/sravansai-26/FOSSEE_Screening_Task" 
               target="_blank" 
               rel="noreferrer"
               className="bg-slate-900 text-white px-5 py-2.5 rounded-full hover:bg-slate-800 transition-all flex items-center gap-2"
